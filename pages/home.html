@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h4>Mobile Protocol</h4>
+        <hr/>
+        <div class ="form-group">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Εισερχόμενο
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/Starter/pages/signIn.html">Εξερχόμενο</a>
+                <a class="dropdown-item" href="#">Οίκοθεν</a>
+                <a class="dropdown-item" href="#">Προβολή Πρωτόκολου</a>
+              </div>
+        </div>
+        </div>
+         <hr/>
+        
+        
+              <div class="form-group">
+                <label for="theme-label">Θέμα Πρωτόκολου</label>
+                <input type="text" class="form-control" ng-model="subject" aria-describedby="emailHelp" placeholder="Θέμα">
+                <small id="themeHelp" class="form-text text-muted">Βοηθητικό κείμενο.</small>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Αποστολέας</label>
+                <input type="text" class="form-control" ng-model="sender" placeholder="Αποστολέας">
+              </div>           
+              <div class="form-group" ng-hide="num"  >
+                <label for="exampleInputPassword1">Αριθμός Πρωτοκόλου</label>
+                <input type="text" class="form-control" ng-model="number" ng-hide="num" placeholder="Αριθμός Πρωτοκόλου">
+              </div>
+              <button href='#' class="btn btn-primary" ng-click= "addRule()" > new Submit</button>
+          
+        
+            <form method="POST" enctype="multipart/form-data" action="http://localhost:8080/api/upload/">
+                    <table>
+                        <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+                        <tr><td></td><td><input type="submit" ng-click= "ProtNum()" value="Upload" /></td></tr>
+                    </table>
+                </form> 
+        
+    
+        
+         
+        
+    </div>
+
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
