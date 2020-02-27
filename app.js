@@ -5,7 +5,7 @@ var protocolApp = angular.module("protocolApp",["ngRoute", "ngResource"]);
 protocolApp.config(function($routeProvider){
 
     $routeProvider
-    .when('/sign',{
+    .when('/home',{
         templateUrl:'pages/home.html',
         controller: 'homeController',
          
@@ -15,7 +15,15 @@ protocolApp.config(function($routeProvider){
         controller: 'signInController',
         
     })
-    
+    .when('/outgoing',{
+        templateUrl:'pages/outgoing.html',
+        controller: 'outgoingController',
+        
+    })
+    .when('/oikothen',{
+        templateUrl:'pages/oikothen.html',
+        controller: 'oikothenController',
+    })
     
 });
 
