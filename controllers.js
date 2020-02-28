@@ -40,8 +40,8 @@ protocolApp.controller('homeController',['$scope','protocolService','$http','$wi
          $http.post('http://localhost:8080/api/protNum?theProtocolNum='+$scope.number).then(
              function(response){
                  
-                  $window.alert("To πρωτόκολο με αριθμό "+$scope.number+" ενημερώθηκε με επιτυχία !!" );
-                 $location.url('home') ;
+                $window.alert("To πρωτόκολο με αριθμό "+$scope.number+" ενημερώθηκε με επιτυχία !!" );
+                $location.url('home') ;
              
             }), 
              function(response){
@@ -58,8 +58,9 @@ protocolApp.controller('homeController',['$scope','protocolService','$http','$wi
     
 }]);
 
-protocolApp.controller('outgoingController',['$scope','$http','$window',function($scope,$http,$window){
+protocolApp.controller('outgoingController',['$scope','$http','$window','$location',function($scope,$http,$window,$location){
     
+
     
     $scope.num= '';
     $scope.outYear= '2020'  ;
@@ -85,7 +86,7 @@ protocolApp.controller('outgoingController',['$scope','$http','$window',function
                       
          });
         
-    }
+    }   
     
      
      
@@ -102,13 +103,13 @@ protocolApp.controller('signInController',['$scope','$location','$http','$window
      $scope.signIn = function(){
          $http.post('http://localhost:8080/api/sign?username='+$scope.username+'&password='+$scope.password+'&usageCode=service1').then(function (response) {
 
-             if(response.data == 1)  $location.url('home') ;
+             if(response.data == 1)  $location.url('home');
              else $window.alert("Incorect Username or Password!!");
             
              
             }, function (response) {
                         
-                if(response.data == 1)  $location.url('home') ;
+                if(response.data == 1)  $location.url('home');
                 else $window.alert("Incorect Username or Password!!");
                       
          })
@@ -122,7 +123,8 @@ protocolApp.controller('signInController',['$scope','$location','$http','$window
 
 protocolApp.controller('oikothenController',['$scope','$http','$window','$location',function($scope,$http,$window,$location){
     
-
+    
+    
     $scope.numberOik= 'test num';
     $scope.subjectOik= 'test sub';
     $scope.receiverOik='test rec';
@@ -136,7 +138,9 @@ protocolApp.controller('oikothenController',['$scope','$http','$window','$locati
         $http.post('http://localhost:8080/api/oikothen?subject='+$scope.subjectOik+'&receiver='+$scope.receiverOik+'&outDay='+$scope.outDayOik).then(
             function (response) {
                 
-                if(response.data== -1){$window.alert("Αποτυχία με το οίκοθεν αρχείο" );}
+                if(response.data== -1){
+                    $window.alert("Αποτυχία με το οίκοθεν αρχείο" );
+                }
                 else if (response.data > 0) {
                     $window.alert("δημιουργήθηκε με επιτυχία το οίκοθεν αρχείο" );
                     $scope.outDayOik=$scope.outDayOik;
@@ -155,13 +159,15 @@ protocolApp.controller('oikothenController',['$scope','$http','$window','$locati
         
     }
     
+
+     
       $scope.ProtNum = function(){
          
          $http.post('http://localhost:8080/api/protNum?theProtocolNum='+$scope.numberOik).then(
              function(response){
                  
                   $window.alert("To πρωτόκολο με αριθμό "+$scope.number+" ενημερώθηκε με επιτυχία !!" );
-                 $location.url('home') ;
+                $location.url('home') ;
              
             }), 
              function(response){
@@ -182,13 +188,22 @@ protocolApp.controller('oikothenController',['$scope','$http','$window','$locati
 
 
 
+protocolApp.controller('FileController',['$scope','$http','$window','$location','$resource',function($scope,$http,$window,$location,$resource){
+    
+    
 
+			var Files = $resource('/files/:id', { id: "@id" });
 
+			angular.extend($scope, {
 
+				model: { file: null },
 
+				upload: function(model) {
+					Files.prototype.$save.call(model.file, function(self, headers) {
+						// Handle server response
+					});
+				}
+			});
+		
 
-
-
-
-
-
+}]);

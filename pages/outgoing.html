@@ -1,25 +1,24 @@
-        <h3>Mobile Protocol</h3>       
-        <hr/>
-        <div class ="form-group">
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Επιλογή
-              </button>
-               <a>Εξερχόμενο </a> 
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#!outgoing">Εξερχόμενο</a>
-                <a class="dropdown-item" href="#!oikothen">Οίκοθεν</a>
-                <a class="dropdown-item" href="#!home">Εισερχόμενο</a>
-              </div>
-        </div>
-        </div>
-         <hr/>
+        <h2 align="center" >Mobile Protocol</h2>
+        <h4  align="center" >Εξερχόμενο</h4>
+
+            <div align="center">
+                <hr/>
+                <a class="btn btn-primary" href="#!outgoing" role="button">Εξερχόμενο</a>
+                <a class="btn btn-primary" href="#!oikothen" role="button">Οίκοθεν</a>
+                <a class="btn btn-primary" href="#!home" role="button">Εισερχόμενο</a>
+                <hr/>
+            </div>
+
 
             <div class="form-group">
                 <label>Αριθμός Πρωτοκόλου</label>
                 <input type="text" class="form-control" ng-model="num" placeholder="Αριθμός">
               </div>
             <div class="form-group">
+                <label>Χρονιά εξερχόμενου Πρωτοκόλου</label>
+                <input type="text" class="form-control" ng-model="outYear" placeholder="Χρονιά">
+              </div>
+              <div class="form-group">
                 <label >Θέμα εξερχόμενου Πρωτόκολου</label>
                 <input type="text" class="form-control" ng-model="subject" aria-describedby="emailHelp" placeholder="Θέμα">
                 <small id="themeHelp" class="form-text text-muted">Βοηθητικό κείμενο.</small>
@@ -28,18 +27,21 @@
                 <label>Αποδέκτης</label>
                 <input type="text" class="form-control" ng-model="receiver" placeholder="Αποδέκτης">
               </div>
-            <div class="form-group">
+              <div class="form-group">
                 <label >Κοινοποίηση</label>
                 <input type="text" class="form-control" ng-model="shared" aria-describedby="emailHelp" placeholder="Κοινοποίηση">
                 <small id="themeHelp" class="form-text text-muted">Βοηθητικό κείμενο.</small>
               </div>
-               <div class="form-group">
-                <label>Ημερομηνία εξερχόμενου Πρωτοκόλου</label>
-                <input type="text" class="form-control" ng-model="outDate" placeholder="Εξερχόμενο">
-              </div>
-            <div class="form-group">
-                <label>Χρονιά εξερχόμενου Πρωτοκόλου</label>
-                <input type="text" class="form-control" ng-model="outYear" placeholder="Χρονιά">
-              </div>
-            <hr/>
-            <button class="btn btn-primary" ng-click= "outgoing()" >Μετατροπή σε εξερχόμενο</button>
+                <label >Ημερομηνία εξόδου</label>
+                <input id="datepicker" width="276" type="text" placeholder = "Ημερομηνία εξαγωγής" ng-model="outDate"/>
+                <script>
+                           $('#datepicker').datepicker({
+                            uiLibrary: 'bootstrap4',
+                            format: 'dd/mm/yyyy'
+                        }); 
+     
+                </script>
+
+                <div align="center" >
+                    <button class="btn btn-primary" ng-click= "outgoing()" >Μετατροπή σε εξερχόμενο</button>
+                </div>

@@ -1,28 +1,32 @@
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <h4>Mobile Protocol</h4>
-        <hr/>
-        <div class ="form-group" ng-model="drop"  >
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Επιλογή
-              </button>
-                 <a>Εισερχόμενο</a> 
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#!outgoing">Εξερχόμενο</a>
-                <a class="dropdown-item" href="#!oikothen">Οίκοθεν</a>
-                <a class="dropdown-item" href="#!home">Εισερχόμενο</a>
-              </div>
-        </div>
-        </div>
-         <hr/>
-        
-        
+        <h2 align="center" >Mobile Protocol</h2>
+        <h4  align="center" >Εισερχόμενο</h4>
+    
+            <div align="center">
+                <hr/>
+                <a class="btn btn-primary" href="#!outgoing" role="button">Εξερχόμενο</a>
+                <a class="btn btn-primary" href="#!oikothen" role="button">Οίκοθεν</a>
+                <a class="btn btn-primary" href="#!home" role="button">Εισερχόμενο</a>
+                <hr/>
+            </div>
+    
               <div class="form-group">
                 <label >Θέμα Εισερχομένου</label>
                 <input type="text" class="form-control" ng-model="subject" aria-describedby="emailHelp" placeholder="Θέμα">
                 <small id="themeHelp" class="form-text text-muted">Βοηθητικό κείμενο.</small>
               </div>
+
+
+            <div
+              class="btn btn-primary btn-upload"
+              upload-button
+              url="/upload"
+              on-success="onSuccess(response)"
+            >Upload</div>
+
+            <div ng-controller="FileController">
+                <input type="file" ng-model="model.file" change="upload(model)" />
+            </div>
+
               <div class="form-group">
                 <label>Αποστολέας</label>
                 <input type="text" class="form-control" ng-model="sender" placeholder="Αποστολέας">
@@ -31,48 +35,22 @@
                 <label >Αριθμός Πρωτοκόλου</label>
                 <input type="text" class="form-control" ng-model="number" ng-hide="num" placeholder="Αριθμός Πρωτοκόλου">       
               </div>
-              <button href='#' class="btn btn-primary" ng-click= "addRule()" > new Submit</button>
-                <hr/>
+                <div align="center">
+                    <button href='#' class="btn btn-primary" ng-click= "addRule()" >New Submit</button>
+                 </div>
+                    <hr/ ng-hide="file">
+                    <form method="POST"  align="center" enctype="multipart/form-data" action="http://localhost:8080/api/upload/">
+                        <table>
+                            <tr><td ng-hide="file">Επισύναψη Αρχείου:</td><td><input type="file" name="file" ng-hide="file" /></td></tr>
+                            <tr><td></td><td><input type="submit" ng-click= "ProtNum()" value="Upload" ng-hide="file"/></td></tr>
+                        </table>
+                    </form> 
+                    <hr/ ng-hide="file">
 
-        
-                <form method="POST" enctype="multipart/form-data" action="http://localhost:8080/api/upload/">
-                    <table>
-                        <tr><td ng-hide="file">File to upload:</td><td><input type="file" name="file" ng-hide="file" /></td></tr>
-                        <tr><td></td><td><input type="submit" ng-click= "ProtNum()" value="Upload" ng-hide="file"/></td></tr>
-                    </table>
-                </form> 
-        
     
         
          
         
-    </div>
-
-    
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
