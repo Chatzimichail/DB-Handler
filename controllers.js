@@ -39,16 +39,11 @@ protocolApp.controller('homeController',['$scope','protocolService','$http','$wi
          
          $http.post('http://localhost:8080/api/protNum?theProtocolNum='+$scope.number).then(
              function(response){
-                 
-                $window.alert("To πρωτόκολο με αριθμό "+$scope.number+" ενημερώθηκε με επιτυχία !!" );
-                $location.url('home') ;
-             
+                
             }), 
              function(response){
-                $window.alert("To πρωτόκολο δεν ενημερώθηκε !!" );
+                $window.alert("To πρωτόκολο δεν ενημερώθηκε !!" );  
 
-               
-               
              
             }
          
@@ -166,8 +161,7 @@ protocolApp.controller('oikothenController',['$scope','$http','$window','$locati
          $http.post('http://localhost:8080/api/protNum?theProtocolNum='+$scope.numberOik).then(
              function(response){
                  
-                  $window.alert("To πρωτόκολο με αριθμό "+$scope.number+" ενημερώθηκε με επιτυχία !!" );
-                $location.url('home') ;
+                 
              
             }), 
              function(response){
@@ -207,3 +201,88 @@ protocolApp.controller('FileController',['$scope','$http','$window','$location',
 		
 
 }]);
+
+protocolApp.controller('doneUploadController',[function(){
+    
+    
+    
+    }]);
+
+protocolApp.controller('updateController',['$scope','$http','$window',function($scope,$http,$window){
+    
+    $scope.subject ='test';
+    $scope.sender = 'test 2';
+    $scope.number = '';
+    var year=2020;
+    
+    $scope.submit = false;
+    $scope.file = true;
+
+    
+    $scope.Update = function(){
+        
+        $http.post('http://localhost:8080/api/protNum?theProtocolNum='+$scope.number).then(
+             function(response){
+                 
+                
+                
+            }), 
+             function(response){
+                $window.alert("To πρωτόκολο δεν ενημερώθηκε !!" );  
+
+             
+             
+            }
+        
+        
+        $http.post('http://localhost:8080/api/update?theProtocolNum='+$scope.number+'&year=2020&subject='+$scope.subject+'&sender='+$scope.sender).
+        then(function (response) {
+
+            $scope.subject ='';
+            $scope.sender = '';
+            $scope.number = '';
+            
+            if (response.data == 1)  $window.alert("Ενημερώθηκε με επιτυχία!");
+            else if (response.data == -10) {}
+            else $window.alert("Αποτυχία με την ενημέρωση!");
+
+
+            
+
+            }, function (response) {
+
+            $window.alert("Failed!");
+            });
+        
+        
+        
+    }
+    
+    $scope.ProtNum = function(){
+         
+         $http.post('http://localhost:8080/api/protNum?theProtocolNum='+$scope.number).then(
+             function(response){
+                 
+                $scope.subject ='';
+                $scope.sender = '';
+                $scope.number = '';
+                
+            }), 
+             function(response){
+                $window.alert("To πρωτόκολο δεν ενημερώθηκε !!" );  
+
+                $scope.subject ='';
+                $scope.sender = '';
+                $scope.number = '';
+             
+            }
+         
+     }
+     
+    $scope.swapp = function(){
+         
+        $scope.submit =  $scope.file;
+        $scope.file = !$scope.submit;
+     }
+    
+    }]);

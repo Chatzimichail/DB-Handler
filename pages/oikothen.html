@@ -6,6 +6,7 @@
                 <a class="btn btn-primary" href="#!outgoing" role="button">Εξερχόμενο</a>
                 <a class="btn btn-primary" href="#!oikothen" role="button">Οίκοθεν</a>
                 <a class="btn btn-primary" href="#!home" role="button">Εισερχόμενο</a>
+                <a class="btn btn-primary" href="#!update" role="button">Ενημέρωση πρωτόκολου</a>
                 <hr/>
             </div>
 
@@ -46,7 +47,7 @@
                 <form method="POST" enctype="multipart/form-data" ng-hide="fileOik" action="http://localhost:8080/api/upload/">
                         <table>
                             <tr><td >Επισύναψη αρχείου:</td><td><input type="file" name="file" ng-hide="file" /></td></tr>
-                            <tr><td></td><td><input type="submit" ng-click= "ProtNum()" value="Upload"/></td></tr>
+                            <tr><td></td><td><input type="submit"  ng-click= "ProtNum()" formtarget="_blank" onclick="window.location.replace='#!oikothen';" value="Upload"/></td></tr>
                         </table>
                 </form>
                 <hr/ ng-hide="fileOik">

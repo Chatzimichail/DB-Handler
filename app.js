@@ -24,6 +24,14 @@ protocolApp.config(function($routeProvider){
         templateUrl:'pages/oikothen.html',
         controller: 'oikothenController',
     })
+    .when('/up',{
+        templateUrl:'pages/doneUpload.html',
+        controller: 'doneUploadController',
+    })
+    .when('/update',{
+        templateUrl:'pages/update.html',
+        controller: 'updateController',
+    })
     
 });
 
