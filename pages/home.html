@@ -16,14 +16,15 @@
                 <small class="form-text text-muted">Βοηθητικό κείμενο.</small>
               </div>
 
+                <div  class="form-group">
+                    <label>Αποστολέας</label>
+                    <input list="names" class="form-control" ng-model="sender" placeholder="Αποστολέας" />
+                    <datalist id="names" >  
+                        <option  ng-repeat="x in senders">{{x.name}}</option>
+                    </datalist>
+                </div>
 
-            
-
-              <div class="form-group">
-                <label>Αποστολέας</label>
-                <input type="text" class="form-control" ng-model="sender" placeholder="Αποστολέας">
-              </div>           
-              <div class="form-group" ng-hide="num"  >
+              <div class="form-group" ng-hide="num">
                 <label >Αριθμός Πρωτοκόλου</label>
                 <input type="text" class="form-control" ng-model="number" ng-hide="num" placeholder="Αριθμός Πρωτοκόλου">       
               </div>
@@ -40,5 +41,5 @@
                     </form> 
                     <hr/ ng-hide="file"> 
 
-    
+               
             

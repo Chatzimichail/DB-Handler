@@ -15,19 +15,16 @@
                 <input type="text" class="form-control" ng-model="subjectOik" aria-describedby="emailHelp" placeholder="Θέμα">
                 <small id="themeHelp" class="form-text text-muted">Βοηθητικό κείμενο.</small>
               </div>
-              <div class="form-group">
-                <label>Αποδέκτης</label>
-                <input type="text" class="form-control" ng-model="receiverOik" placeholder="Αποδέκτης">
-              </div>
-                
 
-<!--
-              <div class="form-group">
-                <label >Ημερομηνία εξόδου</label>
-                <input type="text" class="form-control" ng-model="outDayOik"  placeholder="Ημερομηνία εξόδου">       
-              </div >
--->
-                <label>Ημερομηνία εξόδου</label>
+                <div  class="form-group">
+                    <label>Αποδέκτης</label>
+                    <input list="names" class="form-control" ng-model="receiverOik" placeholder="Αποδέκτης" />
+                    <datalist id="names" >  
+                        <option  ng-repeat="x in senders">{{x.name}}</option>
+                    </datalist>
+                </div>
+
+           <label>Ημερομηνία εξόδου</label>
                 <input id="datepicker" width="276" type="text" placeholder = "Ημερομηνία εξαγωγής" ng-model="outDayOik"/>
                 <script>
                            $('#datepicker').datepicker({

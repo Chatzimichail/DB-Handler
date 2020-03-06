@@ -2,14 +2,26 @@ protocolApp.controller('homeController',['$scope','protocolService','$http','$wi
 
     $scope.theme = protocolService.theme;
     
+    $http.post('http://localhost:8080/api/associate?usageCode=service1').
+        then(function (response) {
+  
+            $scope.senders = response.data;
+        
+            }, function (response) {
+                $window.alert("Error with the accosiates");
+
+            });
+    
     
     $scope.$watch('theme', function(){
         protocolService.theme = $scope.theme;
+        
+        
     })
         
-    $scope.subject ='test';
-    $scope.sender = 'test 2';
-    $scope.number = 'test 2';
+    $scope.subject ='subj';
+    $scope.sender = '';
+    $scope.number = '   ';
     
     $scope.num = true;
     $scope.file = true;
@@ -20,7 +32,8 @@ protocolApp.controller('homeController',['$scope','protocolService','$http','$wi
         $http.post('http://localhost:8080/api/new?subject='+$scope.subject+'&sender='+$scope.sender).then(function (response) {
 
             $scope.subject = "";
-            $scope.sender = '';
+            $scope.sender = "";
+            
             
             $scope.number = response.data
             $scope.num = false;
@@ -48,8 +61,24 @@ protocolApp.controller('homeController',['$scope','protocolService','$http','$wi
             }
          
      }
-    
-    
+     
+     $scope.associate = function(){
+         
+         $http.post('http://localhost:8080/api/associate?').
+        then(function (response) {
+  
+            $scope.senders = response.data;
+        
+            }, function (response) {
+                $window.alert("Error with the accosiates");
+
+            });
+         
+     }
+     
+     
+//  drop down search
+        
     
 }]);
 
@@ -60,9 +89,19 @@ protocolApp.controller('outgoingController',['$scope','$http','$window','$locati
     $scope.num= '';
     $scope.outYear= '2020'  ;
     $scope.outDate='';
-    $scope.subject='test subg';
-    $scope.receiver='test receiv';
-    $scope.shared='test shar';
+    $scope.subject='';
+    $scope.receiver='';
+    $scope.shared='';
+    
+    $http.post('http://localhost:8080/api/associate?usageCode=service1').
+        then(function (response) {
+  
+            $scope.senders = response.data;
+        
+            }, function (response) {
+                $window.alert("Error with the accosiates");
+
+            });
     
     $scope.outgoing = function(){
         
@@ -92,20 +131,21 @@ protocolApp.controller('signInController',['$scope','$location','$http','$window
 
     $scope.username ='admin';
     $scope.password = '0t$db@';
+    $scope.usage = 'service1';
     
     $scope.num = true;
     
      $scope.signIn = function(){
-         $http.post('http://localhost:8080/api/sign?username='+$scope.username+'&password='+$scope.password+'&usageCode=service1').then(function (response) {
+         $http.post('http://localhost:8080/api/sign?username='+$scope.username+'&password='+$scope.password+'&usageCode='+$scope.usage).then(function (response) {
 
              if(response.data == 1)  $location.url('home');
-             else $window.alert("Incorect Username or Password!!");
+             else $window.alert("Incorect Username, Password, Usage!!");
             
              
             }, function (response) {
                         
                 if(response.data == 1)  $location.url('home');
-                else $window.alert("Incorect Username or Password!!");
+                else $window.alert("Incorect Username or Password, Usage!!");
                       
          })
          
@@ -122,11 +162,21 @@ protocolApp.controller('oikothenController',['$scope','$http','$window','$locati
     
     $scope.numberOik= 'test num';
     $scope.subjectOik= 'test sub';
-    $scope.receiverOik='test rec';
+    $scope.receiverOik='';
     $scope.outDayOik='';
     
     $scope.numOik = true;
     $scope.fileOik = true;
+    
+     $http.post('http://localhost:8080/api/associate?usageCode=service1').
+        then(function (response) {
+  
+            $scope.senders = response.data;
+        
+            }, function (response) {
+                $window.alert("Error with the accosiates");
+
+            }); 
     
     $scope.oikothen = function(){
         
@@ -210,13 +260,23 @@ protocolApp.controller('doneUploadController',[function(){
 
 protocolApp.controller('updateController',['$scope','$http','$window',function($scope,$http,$window){
     
-    $scope.subject ='test';
-    $scope.sender = 'test 2';
+    $scope.subject ='';
+    $scope.sender = '';
     $scope.number = '';
     var year=2020;
     
     $scope.submit = false;
     $scope.file = true;
+    
+    $http.post('http://localhost:8080/api/associate?usageCode=service1').
+        then(function (response) {
+  
+            $scope.senders = response.data;
+        
+            }, function (response) {
+                $window.alert("Error with the accosiates");
+
+            });
 
     
     $scope.Update = function(){
