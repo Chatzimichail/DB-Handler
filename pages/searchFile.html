@@ -1,0 +1,55 @@
+        <h2 align="center" >Mobile Protocol</h2>
+        <h4  align="center" >Αναζήτηση Αρχείου</h4>
+
+            <div class="form-group">
+                <label>Αριθμός Πρωτοκόλου</label>
+                <input type="text" class="form-control" ng-model="num" placeholder="Αριθμός">
+            </div>
+            <div class="form-group">
+                <label>Χρονολογία Πρωτόκολου</label>
+                <input type="text" class="form-control" ng-model="year" placeholder="Αριθμός">
+            </div>
+    
+            <div class="form-row">
+                <div ng-repeat="x in data"> 
+                    <div>
+                        <ul  class="list-group" >
+                           <li  class="list-group-item">fileName: {{x.fileName}}</li>          
+                           <li  class="list-group-item">description: {{x.description}}</li>
+                           <li  class="list-group-item">type: {{x.type}}</li>
+                           <li  class="list-group-item">kind: {{x.kind}}</li>
+                        </ul>
+                        <button class="btn btn-primary" ng-click= "findIdFile(x.fileID)" >Προβολή αρχείου</button>
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+
+            <button class="btn btn-primary" ng-click= "search()" >Αναζήτηση</button>
+
+                <img ng-src="{{'data:image/png;base64,'+Base64}}" ng-show="Base64 != null"/>
+<!--
+                <iframe src="data:application/gzip;base64,'+Base64}}" ng-show="Base64 != null"/>
+                <iframe ng-src="{{'data:text/html;base64,'+Base64}}" ng-show="Base64 != null"/>
+-->
+                <script>
+                this.open("data:application/gzip;base64,'+Base64}}");
+                </script>
+            <div ng-repeat="x in data"> 
+                
+               
+
+
+            </div>
+
+
+
+    
+<div id="outPut" >
+  <p>Taken from wikpedia</p>    
+  <img src="data:application/gzip;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA
+    AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
+        9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+</div>
+

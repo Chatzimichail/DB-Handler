@@ -78,7 +78,9 @@ protocolApp.controller('homeController',['$scope','protocolService','$http','$wi
      
      
 //  drop down search
-        
+//        $http.get('https://picsum.photos/200/300').then(function(response) {
+//            $scope.user.data = response.data;
+//        });
     
 }]);
 
@@ -252,11 +254,80 @@ protocolApp.controller('FileController',['$scope','$http','$window','$location',
 
 }]);
 
-protocolApp.controller('doneUploadController',[function(){
+protocolApp.controller('searchFileController',['$scope','$location','$http','$window',function($scope,$location,$http,$window){
+    
+    $scope.year= 2020;
+    $scope.num=155;
+    
+    
+    $scope.search = function(){
+            
+            $http.post('http://localhost:8080/api/filesearch?num='+$scope.num+'&year='+$scope.year).
+            then(function (response) {
+                    
+                    //$scope.decodedFrame = atob($scope.jsonData.dataFormat);
+                    //$scope.file = response.data.
+                $scope.data = response.data;
+            
+                }, function (response) {
+    
+                    $window.alert("Error");
+
+                
+                }); 
+            
+        };
+    
+    $scope.findIdFile = function(fileId){
+        
+        $http.post('http://localhost:8080/api/fileIdSearch?id='+fileId).
+            then(function (response) {
+                    
+                    
+            
+            if (typeof btoa !== 'function') {
+              // Cannot decode Base64 values because the atob() function is not supported
+              // Perhaps you want to use a polyfill or at least inform user about this
+                $window.alert("Error with the base 64");
+                
+               
+
+                }
+            else{
+                
+                $scope.Base64 = response.data.data
+
+        var contentType = headers["content-type"] || "application/octet-stream";
+        var urlCreator = $window.URL || $window.webkitURL || $window.mozURL || $window.msURL;
+        if (urlCreator) {
+        var blob = new Blob([data], { type: contentType });
+        var url = urlCreator.createObjectURL(blob);
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        a.href = url;
+        a.download = "download.pdf"; //you may assign this value from header as well 
+        a.click();
+        window.URL.revokeObjectURL(url);
+
+        }
+             //   
+            }
+            
+                        
+            
+                }, function (response) {
+    
+                    $window.alert("Error");
+
+                
+                }); 
+        
+    }
     
     
     
-    }]);
+}]);
 
 protocolApp.controller('updateController',['$scope','$http','$window',function($scope,$http,$window){
     
@@ -272,9 +343,21 @@ protocolApp.controller('updateController',['$scope','$http','$window',function($
         then(function (response) {
   
             $scope.senders = response.data;
+            
         
             }, function (response) {
                 $window.alert("Error with the accosiates");
+
+            });
+    
+    
+    $http.post('http://localhost:8080/api/usagelist').
+        then(function (response) {
+  
+            $scope.usages = response.data;
+        
+            }, function (response) {
+                $window.alert("Error with the usagelist");
 
             });
 
@@ -295,12 +378,22 @@ protocolApp.controller('updateController',['$scope','$http','$window',function($
             }
         
         
-        $http.post('http://localhost:8080/api/update?theProtocolNum='+$scope.number+'&year=2020&subject='+$scope.subject+'&sender='+$scope.sender).
+        if ($scope.usage ==("ΑΠΟΡΡΙΨΗ"))
+            $scope.usageStatus = "1007";
+        if ($scope.usage==("ΕΓΚΡΙΣΗ"))
+            $scope.usageStatus = "1001";    
+        if ($scope.usage==("ΠΛΗΡΗΣ"))
+            $scope.usageStatus = "1002";
+        if ($scope.usage==("ΜΗ ΠΛΗΡΗΣ"))
+            $scope.usageStatus = "1002";
+        
+        $http.post('http://localhost:8080/api/update?theProtocolNum='+$scope.number+'&year=2020&subject='+$scope.subject+'&sender='+$scope.sender+'&usage='+$scope.usageStatus).
         then(function (response) {
 
             $scope.subject ='';
             $scope.sender = '';
             $scope.number = '';
+            $scope.usage = '';
             
             if (response.data == 1)  $window.alert("Ενημερώθηκε με επιτυχία!");
             else if (response.data == -10) {}
@@ -346,3 +439,65 @@ protocolApp.controller('updateController',['$scope','$http','$window',function($
      }
     
     }]);
+
+
+protocolApp.controller('indexController',['$scope','$location','$window','$http',function($scope,$location,$window,$http){
+    
+    
+    $scope.$on('$routeChangeStart', function($event, next, current) { 
+        
+        $scope.number = $location.path();
+        
+        if ( $scope.number == '/' ) {$scope.head = true}
+        else {$scope.head = false}
+    });
+    
+        $scope.signOut = function(){
+            
+            $http.post('http://localhost:8080/api/signout').
+            then(function (response) {
+                    
+                    if(response.data == 1) {
+                        $window.alert("Αποσυνδέθηκες επιτυχώς");
+                    }
+                    else{
+                        $window.alert("Δεν αποσυνδέθηκες");
+                    }
+            
+                }, function (response) {
+                    $window.alert("Error with the signout"); 
+    
+                }); 
+            
+        }; 
+        
+    }]);
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

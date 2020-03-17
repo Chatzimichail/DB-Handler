@@ -32,6 +32,10 @@ protocolApp.config(function($routeProvider){
         templateUrl:'pages/update.html',
         controller: 'updateController',
     })
+    .when('/search',{
+        templateUrl:'pages/searchFile.html',
+        controller: 'searchFileController',
+    })
     
 });
 

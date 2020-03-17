@@ -1,20 +1,11 @@
         <h2 align="center" >Mobile Protocol</h2>
         <h4  align="center" >Οίκοθεν</h4>
 
-            <div align="center">
-                <hr/>
-                <a class="btn btn-primary" href="#!outgoing" role="button">Εξερχόμενο</a>
-                <a class="btn btn-primary" href="#!oikothen" role="button">Οίκοθεν</a>
-                <a class="btn btn-primary" href="#!home" role="button">Εισερχόμενο</a>
-                <a class="btn btn-primary" href="#!update" role="button">Ενημέρωση πρωτόκολου</a>
-                <hr/>
-            </div>
-
-            <div class="form-group">
-                <label >Θέμα Οίκοθεν</label>
-                <input type="text" class="form-control" ng-model="subjectOik" aria-describedby="emailHelp" placeholder="Θέμα">
-                <small id="themeHelp" class="form-text text-muted">Βοηθητικό κείμενο.</small>
-              </div>
+                <div class="form-group">
+                    <label >Θέμα Οίκοθεν</label>
+                    <input type="text" class="form-control" ng-model="subjectOik" aria-describedby="emailHelp" placeholder="Θέμα">
+                    <small id="themeHelp" class="form-text text-muted">Βοηθητικό κείμενο.</small>
+                </div>
 
                 <div  class="form-group">
                     <label>Αποδέκτης</label>
@@ -24,7 +15,7 @@
                     </datalist>
                 </div>
 
-           <label>Ημερομηνία εξόδου</label>
+                <label>Ημερομηνία εξόδου</label>
                 <input id="datepicker" width="276" type="text" placeholder = "Ημερομηνία εξαγωγής" ng-model="outDayOik"/>
                 <script>
                            $('#datepicker').datepicker({
@@ -34,8 +25,8 @@
      
                 </script>
                 <div class="form-group"  ng-hide = "numOik">
-                <label >Αριθμός πρωτοκόλου</label>
-                <input type="text" class="form-control" ng-model="numberOik"  placeholder="Αριθμός Πρωτοκόλου">       
+                    <label >Αριθμός πρωτοκόλου</label>
+                    <input type="text" class="form-control" ng-model="numberOik"  placeholder="Αριθμός Πρωτοκόλου">       
               </div>
                 <div align="center">
                     <button class="btn btn-primary" ng-click= "oikothen()" >Δημιουργία Οίκοθεν Αρχείου</button>
